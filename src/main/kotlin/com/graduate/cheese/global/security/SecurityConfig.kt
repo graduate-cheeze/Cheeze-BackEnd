@@ -14,7 +14,6 @@ import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.util.matcher.RequestMatcher
 import org.springframework.web.cors.CorsUtils
 
-@Configuration
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtTokenProvider: JwtTokenProvider,
@@ -39,6 +38,7 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/auth").permitAll()
             .antMatchers(HttpMethod.POST, "/auth/signin").permitAll()
 
+            .antMatchers(HttpMethod.POST, "/image").authenticated()
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
