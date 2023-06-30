@@ -20,6 +20,7 @@ class GetUserInfoServiceImpl(
         val imageList = user.image.map { toData(it) }
 
         return GetUserInfoResponse(
+            nickName = user.nickName,
             image = imageList
         )
     }
