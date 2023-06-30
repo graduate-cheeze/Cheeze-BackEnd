@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.lang.Exception
 import java.util.*
+import javax.validation.constraints.Null
 
 @Service
 @Transactional(rollbackFor = [Exception::class])
@@ -34,6 +35,7 @@ class SignUpServiceImpl(
             email = email,
             nickName = nickName,
             password = passwordEncoder.encode(password),
-            roles = mutableListOf(Role.ROLE_USER)
+            roles = mutableListOf(Role.ROLE_USER),
+            image = mutableListOf()
         )
 }

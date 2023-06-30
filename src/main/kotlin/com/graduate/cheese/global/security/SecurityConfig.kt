@@ -39,10 +39,14 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/auth/signin").permitAll()
 
             .antMatchers(HttpMethod.POST, "/image").authenticated()
+            .antMatchers(HttpMethod.POST, "/image/share").authenticated()
+
+            .antMatchers(HttpMethod.GET, "/user").authenticated()
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
             .authenticationEntryPoint(CustomAuthenticationEntryPoint(objectMapper))
+            .accessDeniedHandler(CustomAccessDeniedHandler(objectMapper))
 
             .and()
             .apply(FilterConfig(jwtTokenProvider, objectMapper))
