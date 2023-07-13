@@ -10,7 +10,8 @@ class WebMvcConfig : WebMvcConfigurer {
         registry.addMapping("/**")
             .allowedOrigins(
                 "http://localhost:8080",
-                "http://localhost:5173"
+                "http://localhost:5173",
+                "https://cheeze-front-end.vercel.app"
             )
             .allowedHeaders("*")
             .allowedMethods("*")
