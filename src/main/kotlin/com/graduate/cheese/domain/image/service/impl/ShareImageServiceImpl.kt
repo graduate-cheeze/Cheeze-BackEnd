@@ -18,12 +18,19 @@ class ShareImageServiceImpl(
     private val imageRepository: ImageRepository
 ) : ShareImageService {
     override fun execute(shareImageRequestData: ShareImageRequestData) {
-        if (shareImageRequestData.imageUrls.size != shareImageRequestData.titles.size) throw SizeNotMatchException
         val user: User = userUtil.fetchCurrentUser()
-        val images: List<Image> = shareImageRequestData.imageUrls.mapIndexed() { index, value ->
-            toEntity(value, shareImageRequestData.titles[index], user)
+        if (shareImageRequestData.titles.size == 1) {
+            val images: List<Image> = shareImageRequestData.imageUrls.map { value ->
+                toEntity(value, shareImageRequestData.titles[0], user)
+            }
+            imageRepository.saveAll(images)
+        } else {
+            if (shareImageRequestData.imageUrls.size != shareImageRequestData.titles.size) throw SizeNotMatchException
+            val images: List<Image> = shareImageRequestData.imageUrls.mapIndexed() { index, value ->
+                toEntity(value, shareImageRequestData.titles[index], user)
+            }
+            imageRepository.saveAll(images)
         }
-        imageRepository.saveAll(images)
     }
 
     private fun toEntity(imageUrl: String, title: String, user: User): Image =
