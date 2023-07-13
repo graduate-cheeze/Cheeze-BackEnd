@@ -42,6 +42,8 @@ class SecurityConfig(
             .antMatchers(HttpMethod.POST, "/image/share").authenticated()
 
             .antMatchers(HttpMethod.GET, "/user").authenticated()
+            .antMatchers(HttpMethod.GET, "/user/front").authenticated()
+
             .anyRequest().denyAll()
             .and()
             .exceptionHandling()
