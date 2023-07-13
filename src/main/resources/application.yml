@@ -41,7 +41,7 @@ jwt:
   refreshSecret: ${JWT_REFRESH_SECRET}
 security:
   secretKey: ${SECURITY_SECRET_KEY}
-  accessExp: 3600
+  accessExp: 360000
   refreshExp: 36000
 
 logging:
