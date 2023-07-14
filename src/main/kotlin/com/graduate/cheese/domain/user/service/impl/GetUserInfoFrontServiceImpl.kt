@@ -45,5 +45,6 @@ class GetUserInfoFrontServiceImpl(
             imageUrl = image.map { it.imageUrl },
             writer = user.nickName,
             day = ChronoUnit.DAYS.between(image[0].createdDate, LocalDateTime.now()),
+            createDate = image.map { it.createdDate.toString() }
         )
 }

@@ -5,5 +5,6 @@ data class GetUserInfoFrontResponseData(
     val title: List<String>,
     val imageUrl: List<String>,
     val writer: String,
-    val day: Long
+    val day: Long,
+    val createDate: List<String>
 )
