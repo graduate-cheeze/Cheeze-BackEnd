@@ -28,7 +28,7 @@ class GetUserInfoFrontServiceImpl(
             .forEach() { day ->
                 imageList.clear()
                 val filteredImages = user.image.filter { image ->
-                    day == image.createdDate.dayOfMonth + image.createdDate.monthValue
+                    day == image.createdDate.dayOfMonth + image.createdDate.monthValue + image.createdDate.minute
                 }
                 imageList.addAll(filteredImages)
                 responseList.add(toData(imageList, user))
