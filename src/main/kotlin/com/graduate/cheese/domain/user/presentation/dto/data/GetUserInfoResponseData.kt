@@ -8,5 +8,5 @@ data class GetUserInfoResponseData(
     val imageUrl: String,
     val writer: String,
     val day: Long,
-    val createDate: LocalDateTime
+    val createDate: String
 )
