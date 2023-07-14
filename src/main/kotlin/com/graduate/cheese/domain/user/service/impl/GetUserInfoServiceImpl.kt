@@ -1,6 +1,7 @@
 package com.graduate.cheese.domain.user.service.impl
 
 import com.graduate.cheese.domain.image.domain.entity.Image
+import com.graduate.cheese.domain.image.domain.repository.ImageRepository
 import com.graduate.cheese.domain.user.presentation.dto.data.GetUserInfoResponseData
 import com.graduate.cheese.domain.user.presentation.dto.res.GetUserInfoResponse
 import com.graduate.cheese.domain.user.service.GetUserInfoService
@@ -14,10 +15,12 @@ import java.time.temporal.ChronoUnit
 @Transactional(readOnly = true)
 class GetUserInfoServiceImpl(
     private val userUtil: UserUtil,
+    private val imageRepository: ImageRepository
 ) : GetUserInfoService {
     override fun execute(): GetUserInfoResponse {
         val user = userUtil.fetchCurrentUser()
-        val imageList = user.image.map { toData(it) }
+        val image = imageRepository.findAll()
+        val imageList = image.map { toData(it) }
 
         return GetUserInfoResponse(
             nickName = user.nickName,
