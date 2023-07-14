@@ -32,5 +32,6 @@ class GetUserInfoServiceImpl(
             day = ChronoUnit.DAYS.between(image.createdDate, LocalDateTime.now()),
             writer = image.user.nickName,
             title = image.title,
+            createDate = image.createdDate
         )
 }

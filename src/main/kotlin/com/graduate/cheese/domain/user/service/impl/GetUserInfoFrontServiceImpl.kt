@@ -3,9 +3,7 @@ package com.graduate.cheese.domain.user.service.impl
 import com.graduate.cheese.domain.image.domain.entity.Image
 import com.graduate.cheese.domain.user.domain.entity.User
 import com.graduate.cheese.domain.user.presentation.dto.data.GetUserInfoFrontResponseData
-import com.graduate.cheese.domain.user.presentation.dto.data.GetUserInfoResponseData
 import com.graduate.cheese.domain.user.presentation.dto.res.GetUserInfoFrontResponse
-import com.graduate.cheese.domain.user.presentation.dto.res.GetUserInfoResponse
 import com.graduate.cheese.domain.user.service.GetUserInfoFrontService
 import com.graduate.cheese.domain.user.util.UserUtil
 import org.springframework.stereotype.Service
@@ -28,7 +26,7 @@ class GetUserInfoFrontServiceImpl(
             .forEach() { day ->
                 imageList.clear()
                 val filteredImages = user.image.filter { image ->
-                    day == image.createdDate.dayOfMonth + image.createdDate.monthValue + image.createdDate.minute
+                    day == image.createdDate.dayOfMonth + image.createdDate.monthValue
                 }
                 imageList.addAll(filteredImages)
                 responseList.add(toData(imageList, user))
